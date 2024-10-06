@@ -2,7 +2,9 @@ EG5BbSIb1VW1HZ7s
 mongodb+srv://<db_username>:<db_password>@cluster0.exh0v.mongodb.net/
 mongodb+srv://sudip10k89:clfQXAwvUtbnoxxK@cluster0.exh0v.mongodb.net/
 
-workflow
+Workflow
+
+A.BACKEND
 1. Make files of frontend and backend
 2. Install required the node modules
 3. Initized basic server
