@@ -56,6 +56,10 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "Incorrect Username or Password", success: false });
     }
+
+    const tokenData = {
+      userId:user._id
+    }
     
   } catch (error) {
     console.log(error);
