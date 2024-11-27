@@ -1,6 +1,6 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
-
+import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
   try {
     const { fullName, username, password, confirmPassword, gender } = req.body;
@@ -50,17 +50,55 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "Incorrect Username or Password", success: false });
     }
-    const isPasswordMatched= await bcrypt.compare(password,user.password)
-    if(!isPasswordMatched){
-        return res
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatched) {
+      return res
         .status(400)
         .json({ message: "Incorrect Username or Password", success: false });
     }
 
     const tokenData = {
-      userId:user._id
-    }
-    
+      userId: user._id,
+    };
+
+    const token = await jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1d",
+    });
+    return res
+      .status(200)
+      .cookie("token", token, {
+        maxAge: 1 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json({
+        _id: user._id,
+        user: user.username,
+        fullName: user.fullName,
+        profilePhoto: user.profilePhoto,
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logout = (req, res) => {
+  try {
+    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+      message: "Logged Out successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOtherUsers = async (req, res) => {
+  try {
+    const loggedInUserId = req.id;
+    const otherUsers = await User.find({ _id: { $ne: loggedInUserId } }).select(
+      "-password"
+    );
+    return res.status(200).json(otherUsers);
   } catch (error) {
     console.log(error);
   }
