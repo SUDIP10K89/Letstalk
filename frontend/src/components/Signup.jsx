@@ -123,9 +123,9 @@ const Signup = () => {
           </div>
           <p className="mt-2">
             Already have an account?
-            <a href="/login" className="text-green-200">
+            <Link to="/login" className="text-green-200">
               Login
-            </a>
+            </Link>
           </p>
           <button type="submit" className="btn btn-accent w-full mt-1">
             Signup

@@ -60,9 +60,9 @@ const Login = () => {
           </div>
           <p className="mt-2">
             Already have an account?
-            <a href="/register" className="text-green-200">
+            <Link to="/register" className="text-green-200">
               Signup
-            </a>
+            </Link>
           </p>
           <button type="submit" className="btn btn-accent w-full mt-1">
             Login
