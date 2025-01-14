@@ -1,2 +1,0 @@
-1. Frontend -> Find extension for redux store (redux)
-2. Backend -> messageController.js
