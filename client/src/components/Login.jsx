@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import {Link,useNavigate} from 'react-router-dom';
 import {useDispatch} from "react-redux";
+import { setAuthUser } from "../redux/userSlice";
 
 const Login = () => {
   const [user, setUser] = useState({
