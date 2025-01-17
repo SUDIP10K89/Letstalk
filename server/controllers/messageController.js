@@ -32,9 +32,23 @@ export const sendMessage = async (req, res) => {
 
     //Socket io
     
-      
+    return res.status(201).json({ message: "Message sent successfully" });
     }
    catch (error) {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const getMessages = async (req, res) => {
+  try {
+    const receiverId = req.params.id;
+    const senderId = req.id;
+    const conversation = await Conversation.findOne({
+      participants: { $all: [senderId, receiverId] },
+    }).populate("messages");
+    return res.status(200).json(conversation?.messages);
+
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+}
