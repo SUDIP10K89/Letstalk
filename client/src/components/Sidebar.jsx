@@ -3,7 +3,7 @@ import OtherUsers from "./OtherUsers";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col h-full border-r border-gray-200 dark:border-gray-700">
+    <div className="flex flex-col border-r border-gray-200 dark:border-gray-700">
     {/* Search Section */}
     <div className="p-4">
       <form>
