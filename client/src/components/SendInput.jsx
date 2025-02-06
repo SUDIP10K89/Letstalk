@@ -5,13 +5,13 @@ import api from "../api";
 const SendInput = () => {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
-  const {slelectedUser} = useSelector((store)=>store.user);
+  const {selectedUser} = useSelector((store)=>store.user);
 
   const onSubmitHandler = async (e) => { 
     
     e.preventDefault();
     try {
-      const res = await api.post("/api/v1/message/send/${selectedUser?._id}");
+      const res = await api.post(`/v1/message/send/${selectedUser?._id}`);
       console.log(res.data);
     } catch (error) {
       console.log(error);

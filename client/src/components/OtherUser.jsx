@@ -1,6 +1,9 @@
 import React from 'react'
 
-const OtherUser = () => {
+const OtherUser = (props) => 
+  {
+    const user = props.user;
+
   return (
     <div className='p-2'>
   <div className='flex items-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer'>
@@ -8,7 +11,7 @@ const OtherUser = () => {
     <div className='relative'>
       <div className='w-10 h-10 rounded-full overflow-hidden'>
         <img 
-          src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" 
+          src={user?.profilePhoto} 
           alt="User avatar"
           className="w-full h-full object-cover"
         />
@@ -19,7 +22,7 @@ const OtherUser = () => {
 
     {/* Username */}
     <div>
-      <p className='font-medium text-gray-800 dark:text-gray-200'>Sudip</p>
+      <p className='font-medium text-gray-800 dark:text-gray-200'>{user?.fullName}</p>
     </div>
   </div>
 </div>

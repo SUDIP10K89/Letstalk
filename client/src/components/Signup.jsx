@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import {Link,useNavigate} from 'react-router-dom';
+import api from "../api";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -20,7 +20,7 @@ const Signup = () => {
   const onSubmitHandler =async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8080/api/v1/user/register`,user,{
+      const res = await api.post(`/v1/user/register`,user,{
         headers:{
           'Content-Type':'application/json',
         },
