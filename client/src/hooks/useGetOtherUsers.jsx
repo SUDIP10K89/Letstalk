@@ -11,7 +11,7 @@ const useGetOtherUsers = () => {
         try {
           api.defaults.withCredentials = true;
           const response = await api.get('/v1/user/')
-          console.log(response.data)
+         
           dispatch(setOtherUsers(response.data))
         } catch (error) {
           console.error(error)

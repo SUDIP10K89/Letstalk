@@ -1,7 +1,21 @@
 import React from "react";
 import OtherUsers from "./OtherUsers";
+import api from "../api";
+import {useNavigate} from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+const logoutHandler =async ()=>{
+  try {
+    const res = await api.get('/v1/user/logout')
+    toast.success(res.data.message)
+    navigate("/login")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
   return (
     <div className="flex flex-col border-r border-gray-200 dark:border-gray-700">
     {/* Search Section */}
@@ -36,7 +50,7 @@ const Sidebar = () => {
    
     {/* Logout Button */}
     <div className="p-4 border-t border-gray-500 dark:border-gray-700">
-      <button className="w-full px-4 py-2 text-sm font-medium text-red-300 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors duration-200">
+      <button onClick={logoutHandler} className="w-full px-4 py-2 text-sm font-medium text-red-300 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors duration-200">
         Logout
       </button>
     </div>
