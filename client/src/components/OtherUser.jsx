@@ -1,12 +1,19 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSelectedUser } from '../redux/userSlice';
 
-const OtherUser = (props) => 
+const OtherUser = ({user}) => 
   {
-    const user = props.user;
+    const dispatch = useDispatch();
+    const {selectedUser} = useSelector(store=>store.user)
+    const selectedUserHandler = ()=>{
+      console.log(user)
+      dispatch(setSelectedUser(user));
+    }
 
   return (
     <div className='p-2'>
-  <div className='flex items-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer'>
+  <div onClick={selectedUserHandler} className={`${selectedUser?._id===user?._id ? 'bg-gray-700':''} flex items-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer`}>
     {/* Avatar container */}
     <div className='relative'>
       <div className='w-10 h-10 rounded-full overflow-hidden'>
