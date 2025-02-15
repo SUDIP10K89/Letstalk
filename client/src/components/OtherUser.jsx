@@ -13,7 +13,7 @@ const OtherUser = ({user}) =>
 
   return (
     <div className='p-2'>
-  <div onClick={selectedUserHandler} className={`${selectedUser?._id===user?._id ? 'bg-gray-700':''} flex items-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer`}>
+  <div onClick={selectedUserHandler} className={`${selectedUser?._id===user?._id ? 'bg-gray-700':''} flex items-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer bg-white `}>
     {/* Avatar container */}
     <div className='relative'>
       <div className='w-10 h-10 rounded-full overflow-hidden'>
